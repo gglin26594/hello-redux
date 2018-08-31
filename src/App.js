@@ -1,16 +1,19 @@
 import React, { Component } from 'react';
 import './App.css';
-import PropTypes from 'prop-types'
+//import PropTypes from 'prop-types'
+import {connect} from 'react-redux'
+import {increment} from './actions';
+import {decrement} from './actions';
 
 class App extends Component {
   render() {
     return (
       
         <div className="container">
-          <h1 className="jumbotro-heading text-center">{this.props.value}</h1>
+          <h1 className="jumbotro-heading text-center">{this.props.counter}</h1>
           <p className="text-center">
-            <button className="btn btn-primary mr-2" onClick={this.props.onClick}>Increase</button>
-            <button className="btn btn-danger mr-2" onClick={this.props.onClickDe}>Decrease</button>
+            <button onClick={()=>this.props.dispatch(increment())} className="btn btn-primary mr-2" >Increase</button>
+            <button onClick={()=>this.props.dispatch(decrement())} className="btn btn-danger mr-2" >Decrease</button>
           </p>
         </div>
     
@@ -18,8 +21,10 @@ class App extends Component {
   }
 }
 
-App.propType = {
-  value: PropTypes.number 
-}
+const mapStateToProps = (state) => {
+  return {
+    counter: state.anotherReducer
+  };
+};
 
-export default App;
+export default connect(mapStateToProps)(App);
