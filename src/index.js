@@ -6,6 +6,7 @@ import registerServiceWorker from './registerServiceWorker';
 
 import {createStore} from 'redux';
 import reducer from './reducer/counter';
+import {increment, decrement} from './actions/index'
 
 const store = createStore(reducer);
 const render = ()=> {
@@ -18,15 +19,12 @@ const render = ()=> {
 }
 
 const handleClick = ()=> {
-    store.dispatch({
-        type: "INCREMENT"
-    });
+    
+    store.dispatch(increment());
 };
 
 const handleClickDe = ()=> {
-    store.dispatch({
-        type: "DECREMENT"
-    });
+    store.dispatch(decrement());
 };
 
 store.subscribe(render);
