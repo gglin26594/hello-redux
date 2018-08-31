@@ -12,7 +12,7 @@ class App extends Component {
             <button className="btn btn-danger mr-2">Decrease</button>
           </p>
         </div>
-     
+    
     );
   }
 }
