@@ -5,14 +5,14 @@ import { connect } from "react-redux";
 import { increment } from "./actions";
 import { increment1 } from "./actions";
 import { decrement } from "./actions";
+import  User  from "./components/User";
 
 class App extends Component {
   render() {
-    const { increment } = this.props;
+    //const { increment } = this.props;
     const { increment1 } = this.props;
     const { decrement } = this.props;
-    console.dir(increment);
-    console.dir(this.props);
+    
     return (
       <div className="container">
         <h1 className="jumbotro-heading text-center">{this.props.counter}</h1>
@@ -24,7 +24,9 @@ class App extends Component {
             Decrease
           </button>
         </p>
+        <User /> 
       </div>
+      
     );
   }
 }
