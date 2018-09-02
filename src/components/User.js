@@ -6,11 +6,18 @@ import { connect } from "react-redux";
 
 class User extends Component {
   render() {
-    const {getUser, user} = this.props;
-    
+    const {getUser, user, error, isFetching} = this.props;
+    let data;
+    if(error) {
+      data = error;
+    } else if (isFetching) {
+      data = "Loading..."
+    } else {
+      data = user.email;
+    }
     return (
       <div className="container">
-        <h1 className="jumbotro-heading text-center">{user.email}</h1>
+        <h1 className="jumbotro-heading text-center">{data}</h1>
         <p className="text-center">
           <button onClick={()=>getUser()} className="btn btn-success">Get Random User</button>
         </p>
@@ -20,8 +27,12 @@ class User extends Component {
 }
 
 const mapStateToProps = (state)=> {
+  console.log(state);
+  
   return {
-    user: state.user
+    user: state.user,
+    error: state.error,
+    isFetching: state.isFetching
   };
 }
 

@@ -1,14 +1,41 @@
-const counter = (state = {}, action = {}) => {
+const initialState = {
+	isFetching: false,
+	error: null,
+	user: {}
+}
+
+const user = (state = initialState, action = {}) => {
 		switch (action.type) {
 			case "FETCH_USER_SUCCESS":
 			{
-				return action.user;
+				return {
+					isFetching: false,
+					error: null,
+					user: action.user,
+				}
 			}
+			case "FETCH_USER_REQUEST": 
+			{
+				return {
+					isFetching: true,
+					error: null,
+					user: {},
+				}
+			}
+			case "FETCH_USER_ERROR": 
+			{
+				return {
+					isFetching: false,
+					error: action.error,
+					user: {},
+				}
+			}
+			
 
 			default:
 				return state;
 		}
 	};
 	
-	export default counter;
+	export default user;
 	
